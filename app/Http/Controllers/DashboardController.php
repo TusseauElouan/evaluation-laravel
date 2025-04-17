@@ -33,18 +33,14 @@ class DashboardController extends Controller
         // Statistiques globales
         $totalRooms = Room::count();
         $totalUsers = User::count();
-        $totalReservations = Reservation::count();
+        $totalReservations = Reservation::where('is_cancelled', false)->count();
 
         // Réservations par jour de la semaine (pour graphique)
         $reservationsByDay = Reservation::selectRaw('DAYOFWEEK(debut) as day, COUNT(*) as count')
             ->where('is_cancelled', false)
             ->groupBy('day')
-            ->orderBy('day')
-            ->get()
-            ->keyBy('day')
-            ->map(function ($item) {
-                return $item->count;
-            });
+            ->pluck('count', 'day')
+            ->toArray();
 
         // Taux d'occupation des salles
         $rooms = Room::withCount(['reservations' => function ($query) {
@@ -88,8 +84,10 @@ class DashboardController extends Controller
         // Obtenir les réservations passées de l'utilisateur
         $pastReservations = $user->reservations()
             ->with('room')
-            ->where('debut', '<', now())
-            ->where('is_cancelled', false)
+            ->where(function($query) {
+                $query->where('debut', '<', now())
+                      ->orWhere('is_cancelled', true);
+            })
             ->orderBy('debut', 'desc')
             ->take(5)
             ->get();
