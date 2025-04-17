@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Room;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -111,8 +115,16 @@ class ReservationController extends Controller
                 ->with('error', 'Vous n\'avez pas le droit de consulter cette réservation.');
         }
 
-        return view('reservations.show', compact('reservation'));
+        // Calcul de la durée
+        $totalMinutes = $reservation->debut->diffInMinutes($reservation->fin);
+        $heures = floor($totalMinutes / 60);
+        $minutes = $totalMinutes % 60;
+
+        $duree = ($heures > 0 ? $heures . "h" : "") . ($minutes > 0 ? $minutes . "min" : "");
+
+        return view('reservations.show', compact('reservation', 'duree'));
     }
+
 
     /**
      * Show the form for editing the specified reservation.

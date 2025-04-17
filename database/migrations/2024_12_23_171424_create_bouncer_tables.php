@@ -78,15 +78,6 @@ return new class extends Migration
                 ->references('id')->on(Models::table('abilities'))
                 ->onUpdate('cascade')->onDelete('cascade');
         });
-
-        $user = new User;
-        $user->nom = 'Tusseau';
-        $user->prenom = 'Elouan';
-        $user->email = 'tusseauelouan@gmail.com';
-        $user->password = Hash::make('password');
-        $user->save();
-
-        Bouncer::assign('admin')->to($user);
     }
 
     /**

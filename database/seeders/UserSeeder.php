@@ -22,5 +22,15 @@ class UserSeeder extends Seeder
             Bouncer::assign('employee')->to($user);
             $this->command->info("Employé créé : {$user->first_name} {$user->last_name} ({$user->email})");
         }
+
+        $user = new User;
+        $user->nom = 'Tusseau';
+        $user->prenom = 'Elouan';
+        $user->email = 'tusseauelouan@gmail.com';
+        $user->password = Hash::make('password');
+        $user->email_verified_at = now();
+        $user->save();
+
+        Bouncer::assign('admin')->to($user);
     }
 }

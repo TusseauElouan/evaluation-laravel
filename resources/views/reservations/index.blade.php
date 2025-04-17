@@ -68,15 +68,15 @@
                                             @endif
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <div class="flex space-x-2">
-                                                    <a href="{{ route('reservations.show', $reservation) }}" class="text-indigo-600 hover:text-indigo-900">
+                                                    <a href="{{ route('reservations.show', $reservation) }}" class="text-indigo-600 hover:text-indigo-900 p-2">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('reservations.edit', $reservation) }}" class="text-yellow-600 hover:text-yellow-900">
+                                                    <a href="{{ route('reservations.edit', $reservation) }}" class="text-yellow-600 hover:text-yellow-900 p-2">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
                                                     <form method="POST" action="{{ route('reservations.cancel', $reservation) }}" class="inline" onsubmit="return confirm('Êtes-vous sûr de vouloir annuler cette réservation?');">
                                                         @csrf
-                                                        <button type="submit" class="text-red-600 hover:text-red-900">
+                                                        <button type="submit" class="text-red-600 hover:text-red-900 p-2">
                                                             <i class="fas fa-times-circle"></i>
                                                         </button>
                                                     </form>

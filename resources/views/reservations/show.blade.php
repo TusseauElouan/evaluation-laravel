@@ -24,7 +24,7 @@
                                         <span class="font-semibold">Horaire:</span> {{ $reservation->debut->format('H:i') }} - {{ $reservation->fin->format('H:i') }}
                                     </p>
                                     <p class="text-gray-600">
-                                        <span class="font-semibold">Durée:</span> {{ $reservation->duree }}
+                                        <span class="font-semibold">Durée:</span> {{ $duree }}
                                     </p>
                                     <p class="text-gray-600">
                                         <span class="font-semibold">Réservé par:</span> {{ $reservation->user->nom }} {{ $reservation->user->prenom }}

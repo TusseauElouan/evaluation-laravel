@@ -30,7 +30,7 @@
                         <!-- Date -->
                         <div class="mb-4">
                             <x-input-label for="reservation_date" :value="__('Date')" />
-                            <x-text-input id="reservation_date" class="block mt-1 w-full" type="date" name="reservation_date" :value="old('reservation_date', $reservation->start_time->format('Y-m-d'))" required />
+                            <x-text-input id="reservation_date" class="block mt-1 w-full" type="date" name="reservation_date" :value="old('reservation_date', $reservation->debut->format('Y-m-d'))" required />
                             <x-input-error :messages="$errors->get('reservation_date')" class="mt-2" />
                         </div>
 
