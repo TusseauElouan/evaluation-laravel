@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
 {
@@ -89,7 +91,7 @@ class RoomController extends Controller
         }
 
         $validated = $request->validate([
-            'nom' => 'required|max:255|unique:rooms,name,' . $room->id,
+            'nom' => 'required|max:255|unique:rooms,nom,' . $room->id,
             'capacite' => 'required|integer|min:1',
             'surface' => 'nullable|numeric',
             'equipment' => 'nullable|string',

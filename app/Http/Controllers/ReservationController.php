@@ -7,6 +7,8 @@ use App\Models\Room;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\ReservationCancelled;
+use App\Notifications\ReservationConfirmation;
 
 class ReservationController extends Controller
 {
@@ -64,22 +66,22 @@ class ReservationController extends Controller
     {
         $validated = $request->validate([
             'room_id' => 'required|exists:rooms,id',
-            'debut' => 'required|date_format:Y-m-d H:i',
-            'din' => 'required|date_format:Y-m-d H:i|after:debut',
+            'reservation_date' => 'required|date',
+            'debut' => 'required|date_format:H:i',
+            'fin' => 'required|date_format:H:i|after:debut',
             'titre' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
 
+        $date_debut = Carbon::parse($validated['reservation_date'] . ' ' . $validated['debut']);
+        $date_fin = Carbon::parse($validated['reservation_date'] . ' ' . $validated['fin']);
+
         // Vérifier si la salle est disponible pour cette plage horaire
         $conflictingReservation = Reservation::where('room_id', $validated['room_id'])
             ->where('is_cancelled', false)
-            ->where(function($query) use ($validated) {
-                $query->whereBetween('debut', [$validated['debut'], $validated['fin']])
-                    ->orWhereBetween('fin', [$validated['debut'], $validated['fin']])
-                    ->orWhere(function($query) use ($validated) {
-                        $query->where('debut', '<=', $validated['debut'])
-                              ->where('fin', '>=', $validated['fin']);
-                    });
+            ->where(function($query) use ($date_debut, $date_fin) {
+                $query->where('debut', '<', $date_fin)
+                    ->where('fin', '>', $date_debut);
             })->first();
 
         if ($conflictingReservation) {
@@ -88,11 +90,14 @@ class ReservationController extends Controller
             ]);
         }
 
+
+
+
         $reservation = new Reservation();
         $reservation->room_id = $validated['room_id'];
         $reservation->user_id = Auth::id();
-        $reservation->debut = $validated['debut'];
-        $reservation->fin = $validated['fin'];
+        $reservation->debut = $date_debut;
+        $reservation->fin = $date_fin;
         $reservation->titre = $validated['titre'];
         $reservation->description = $validated['description'] ?? null;
         $reservation->save();
@@ -229,34 +234,36 @@ class ReservationController extends Controller
      * Check room availability
      */
     public function checkAvailability(Request $request)
-    {
-        $roomId = $request->input('room_id');
-        $date = $request->input('date');
+{
+    $roomId = $request->input('room_id');
+    $date = $request->input('date');
 
-        if (!$roomId || !$date) {
-            return response()->json(['error' => 'Paramètres manquants'], 400);
-        }
-
-        $room = Room::findOrFail($roomId);
-
-        $reservations = Reservation::where('room_id', $roomId)
-            ->whereDate('debut', $date)
-            ->where('is_cancelled', false)
-            ->orderBy('debut')
-            ->get()
-            ->map(function ($reservation) {
-                return [
-                    'id' => $reservation->id,
-                    'start' => $reservation->debut,
-                    'end' => $reservation->fin,
-                    'titre' => $reservation->titre,
-                    'user' => $reservation->user->name,
-                ];
-            });
-
-        return response()->json([
-            'room' => $room,
-            'reservations' => $reservations
-        ]);
+    if (!$roomId || !$date) {
+        return response()->json(['error' => 'Paramètres manquants'], 400);
     }
+
+    $room = Room::findOrFail($roomId);
+
+    $reservations = Reservation::with('user')
+        ->where('room_id', $roomId)
+        ->whereDate('debut', $date)
+        ->where('is_cancelled', false)
+        ->orderBy('debut')
+        ->get()
+        ->map(function ($reservation) {
+            return [
+                'id' => $reservation->id,
+                'start' => $reservation->debut->toDateTimeString(),
+                'end' => $reservation->fin->toDateTimeString(),
+                'titre' => $reservation->titre,
+                'user' => $reservation->user->name,
+            ];
+        });
+
+    return response()->json([
+        'room' => $room,
+        'reservations' => $reservations
+    ]);
+}
+
 }

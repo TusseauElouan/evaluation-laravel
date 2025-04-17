@@ -102,8 +102,10 @@
                 loadReservations(date);
             });
 
+
             // Fonction pour charger les réservations par AJAX
             function loadReservations(date) {
+                console.log("Chargement des réservations pour : ", date);
                 fetch(`{{ route('reservations.check-availability') }}?room_id={{ $room->id }}&date=${date}`)
                     .then(response => response.json())
                     .then(data => {

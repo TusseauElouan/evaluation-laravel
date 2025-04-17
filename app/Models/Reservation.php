@@ -6,6 +6,41 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $room_id
+ * @property \Illuminate\Support\Carbon $debut
+ * @property \Illuminate\Support\Carbon $fin
+ * @property string|null $titre
+ * @property string|null $description
+ * @property bool $is_cancelled
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $duration
+ * @property-read mixed $formatted_end_time
+ * @property-read mixed $formatted_start_date
+ * @property-read mixed $formatted_start_time
+ * @property-read \App\Models\Room $room
+ * @property-read \App\Models\User $user
+ * @method static \Database\Factories\ReservationFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation whereDebut($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation whereFin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation whereIsCancelled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation whereRoomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation whereTitre($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Reservation whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Reservation extends Model
 {
     use HasFactory;

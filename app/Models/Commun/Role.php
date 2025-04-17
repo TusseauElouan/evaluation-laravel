@@ -9,19 +9,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Silber\Bouncer\Database\Role as BouncerRole;
 
 /**
+ * 
+ *
  * @property int $id
  * @property string $name
  * @property string|null $title
  * @property int|null $scope
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @property-read Collection<int, \Silber\Bouncer\Database\Ability> $abilities
  * @property-read int|null $abilities_count
  * @property-read string $actions
  * @property-read Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
- *
  * @method static \Database\Factories\Commun\RoleFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Role newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Role newQuery()
@@ -33,7 +33,6 @@ use Silber\Bouncer\Database\Role as BouncerRole;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Role whereScope($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Role whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Role whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class Role extends BouncerRole      // @phpstan-ignore-line

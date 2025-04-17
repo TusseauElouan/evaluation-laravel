@@ -6,6 +6,36 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $nom
+ * @property int $capacite
+ * @property float|null $surface Surface en m²
+ * @property string|null $equipment Équipements disponibles
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Reservation> $reservations
+ * @property-read int|null $reservations_count
+ * @method static \Database\Factories\RoomFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room whereCapacite($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room whereEquipment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room whereNom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room whereSurface($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Room extends Model
 {
     use HasFactory, SoftDeletes;
