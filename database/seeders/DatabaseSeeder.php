@@ -2,12 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Silber\Bouncer\BouncerFacade as Bouncer;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,27 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::firstOrCreate([
-            'first_name' => 'Erwan',
-            'last_name' => 'Baron',
-            'email' => 'erwan.baron@usgph.com',
-            'password' => Hash::make('password'),
-            'remember_token' => Str::random(10),
-        ]);
-        Bouncer::assign('user')->to($user);
+        $this->call(RolesSeeder::class);
 
-        $admin = User::firstOrCreate([
-            'first_name' => 'test',
-            'last_name' => 'admin',
-            'email' => 'testadmin@usgph.com',
-            'password' => Hash::make('password'),
-            'remember_token' => Str::random(10),
-        ]);
-        Bouncer::assign('admin')->to($admin);
+        $this->call(UserSeeder::class);
 
-        // call seeders here
-        $this->call([
+        $this->call(RoomSeeder::class);
 
-        ]);
+        $this->call(ReservationSeeder::class);
     }
 }

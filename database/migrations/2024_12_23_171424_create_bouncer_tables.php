@@ -80,13 +80,13 @@ return new class extends Migration
         });
 
         $user = new User;
-        $user->first_name = 'Stéphane';
-        $user->last_name = 'Hervy';
-        $user->email = 'stephane.hervy@wiklog.fr';
+        $user->nom = 'Tusseau';
+        $user->prenom = 'Elouan';
+        $user->email = 'tusseauelouan@gmail.com';
         $user->password = Hash::make('password');
         $user->save();
 
-        Bouncer::assign(Role::ADMIN)->to($user);
+        Bouncer::assign('admin')->to($user);
     }
 
     /**
