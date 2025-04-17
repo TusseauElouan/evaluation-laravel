@@ -66,4 +66,9 @@ class ReservationCancelled extends Notification implements ShouldQueue
             'fin' => $this->reservation->fin->format('Y-m-d H:i'),
         ];
     }
+
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
 }

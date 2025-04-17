@@ -1,0 +1,54 @@
+
+
+[1;37;40mCode Coverage Report:      [0m
+[1;37;40m  2025-04-17 15:09:40      [0m
+[1;37;40m                           [0m
+[1;37;40m Summary:                  [0m
+[37;41m  Classes: 48.39% (15/31)  [0m
+[30;43m  Methods: 75.31% (61/81)  [0m
+[30;43m  Lines:   81.82% (414/506)[0m
+
+App\Http\Controllers\Auth\AuthenticatedSessionController
+  [30;42mMethods: 100.00% ( 3/ 3)[0m   [30;42mLines: 100.00% (  8/  8)[0m
+App\Http\Controllers\Auth\ConfirmablePasswordController
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 10/ 10)[0m
+App\Http\Controllers\Auth\EmailVerificationPromptController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [30;43mLines:  66.67% (  2/  3)[0m
+App\Http\Controllers\Auth\NewPasswordController
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 20/ 20)[0m
+App\Http\Controllers\Auth\PasswordController
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  8/  8)[0m
+App\Http\Controllers\Auth\PasswordResetLinkController
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 11/ 11)[0m
+App\Http\Controllers\Auth\RegisteredUserController
+  [37;41mMethods:  50.00% ( 1/ 2)[0m   [37;41mLines:  42.86% (  6/ 14)[0m
+App\Http\Controllers\Auth\VerifyEmailController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [30;43mLines:  80.00% (  4/  5)[0m
+App\Http\Controllers\DashboardController
+  [30;43mMethods:  66.67% ( 2/ 3)[0m   [30;43mLines:  67.27% ( 37/ 55)[0m
+App\Http\Controllers\ProfileController
+  [30;43mMethods:  66.67% ( 2/ 3)[0m   [30;43mLines:  70.59% ( 12/ 17)[0m
+App\Http\Controllers\ReservationController
+  [30;43mMethods:  75.00% ( 6/ 8)[0m   [30;42mLines:  94.29% (132/140)[0m
+App\Http\Controllers\RoomController
+  [30;42mMethods: 100.00% ( 8/ 8)[0m   [30;42mLines: 100.00% ( 52/ 52)[0m
+App\Http\Requests\Auth\LoginRequest
+  [30;43mMethods:  80.00% ( 4/ 5)[0m   [30;43mLines:  65.22% ( 15/ 23)[0m
+App\Http\Requests\ProfileUpdateRequest
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% ( 12/ 12)[0m
+App\Models\Reservation
+  [30;42mMethods: 100.00% ( 9/ 9)[0m   [30;42mLines: 100.00% ( 20/ 20)[0m
+App\Models\Room
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 14/ 14)[0m
+App\Models\User
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% (  5/  5)[0m
+App\Notifications\ReservationCancelled
+  [30;42mMethods: 100.00% ( 5/ 5)[0m   [30;42mLines: 100.00% ( 21/ 21)[0m
+App\Notifications\ReservationConfirmation
+  [30;42mMethods: 100.00% ( 5/ 5)[0m   [30;42mLines: 100.00% ( 21/ 21)[0m
+App\Traits\Identity
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% (  2/  2)[0m
+App\View\Components\AppLayout
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  1/  1)[0m
+App\View\Components\GuestLayout
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  1/  1)[0m
