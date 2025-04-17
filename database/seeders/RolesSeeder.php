@@ -13,15 +13,15 @@ class RolesSeeder extends Seeder
      */
     public function run(): void
     {
-        // Création des rôles
+        // Création des rôles avec les noms de colonnes corrects
         Bouncer::role()->firstOrCreate([
-            'nom' => 'admin',
-            'titre' => 'Administrateur',
+            'name' => 'admin',
+            'title' => 'Administrateur',
         ]);
 
         Bouncer::role()->firstOrCreate([
-            'nom' => 'employee',
-            'titre' => 'Employé',
+            'name' => 'employee',
+            'title' => 'Employé',
         ]);
 
         // Définir les permissions pour les administrateurs

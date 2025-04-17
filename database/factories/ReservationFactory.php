@@ -27,13 +27,10 @@ class ReservationFactory extends Factory
      */
     public function definition(): array
     {
-        // Générer une date et heure de début aléatoire dans les 30 prochains jours
         $startDate = Carbon::now()->addDays(rand(-15, 30))->setHour(rand(8, 17))->setMinute(0)->setSecond(0);
 
-        // Ajouter une durée aléatoire (1h, 1h30, 2h, etc.)
         $endDate = (clone $startDate)->addMinutes(rand(1, 8) * 30);
 
-        // Titres de réunion réalistes
         $meetingTitles = [
             'Réunion d\'équipe',
             'Présentation projet',
