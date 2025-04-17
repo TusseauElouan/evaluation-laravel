@@ -172,23 +172,23 @@ class ReservationController extends Controller
 
         $validated = $request->validate([
             'room_id' => 'required|exists:rooms,id',
-            'debut' => 'required|date_format:Y-m-d H:i',
-            'fin' => 'required|date_format:Y-m-d H:i|after:debut',
+            'reservation_date' => 'required|date',
+            'debut' => 'required|date_format:H:i',
+            'fin' => 'required|date_format:H:i|after:debut',
             'titre' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
+
+        $date_debut = Carbon::parse($validated['reservation_date'] . ' ' . $validated['debut']);
+        $date_fin = Carbon::parse($validated['reservation_date'] . ' ' . $validated['fin']);
 
         // Vérifier si la salle est disponible pour cette plage horaire
         $conflictingReservation = Reservation::where('room_id', $validated['room_id'])
             ->where('id', '!=', $reservation->id)
             ->where('is_cancelled', false)
-            ->where(function($query) use ($validated) {
-                $query->whereBetween('debut', [$validated['debut'], $validated['fin']])
-                    ->orWhereBetween('fin', [$validated['debut'], $validated['fin']])
-                    ->orWhere(function($query) use ($validated) {
-                        $query->where('debut', '<=', $validated['debut'])
-                              ->where('fin', '>=', $validated['fin']);
-                    });
+            ->where(function($query) use ($date_debut, $date_fin) {
+                $query->where('debut', '<', $date_fin)
+                    ->where('fin', '>', $date_debut);
             })->first();
 
         if ($conflictingReservation) {
