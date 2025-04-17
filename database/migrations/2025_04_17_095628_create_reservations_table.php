@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('room_id')->constrained()->onDelete('cascade');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
-            $table->string('title')->nullable();
+            $table->dateTime('debut');
+            $table->dateTime('fin');
+            $table->string('titre')->nullable();
             $table->text('description')->nullable();
             $table->boolean('is_cancelled')->default(false);
             $table->timestamps();
